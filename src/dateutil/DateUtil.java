@@ -22,10 +22,33 @@ public class DateUtil {
         //getLastDayOfMonth(02,1997);
         //System.out.println(getLastDayOfMonth(3,1996));
         //System.out.println(toString(3,24,1996,"MM/dd/yyyy"));
-
+        //getDaysBetweenDates(3,24,1995, 3,24,1996);
+        System.out.println(getDayofWeek(10, 9,2016));
     }
     
 
+    public static int getDayofWeek(int month, int day, int year){
+        Calendar c = Calendar.getInstance();
+        c.set(year, month - 1, day);
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        return dayOfWeek;
+    }
+    
+    public static int getDaysBetweenDates(int month1, int day1, int year1, int month2, int day2, int year2){
+        int diff=0;
+        Calendar d1 = Calendar.getInstance();
+        d1.set(year1, month1 - 1, day1);
+        Calendar d2 = Calendar.getInstance();
+        d2.set(year2, month2 - 1, day2);
+        
+        while (d1.before(d2)){
+            d1.add(Calendar.DATE, 1);
+            diff +=1;
+        }
+        
+        return diff - 1;
+    }
+    
     public static int getLastDayOfMonth(int month, int year){
         Calendar c = Calendar.getInstance();
         c.set(year, month - 1, 1);
